@@ -107,7 +107,7 @@ $smarty->assign('providerCounts', $providerCounts);
 $smarty->assign('providers', $this->GetProviders());
 
 // Form
-$smarty->assign('formstart', $this->CreateFormStart($id, 'defaultadmin', $returnid, 'post', '', false, '', ['class' => 'oauth-admin-form']));
+$smarty->assign('formstart', $this->CreateFormStart($id, 'defaultadmin', $returnid, 'post', '', false, '', [], 'class="oauth-admin-form"'));
 $smarty->assign('formend', $this->CreateFormEnd());
 
 echo $this->ProcessTemplate('admin_settings.tpl');
