@@ -212,6 +212,50 @@ class OAuth extends CMSModule
         return $user;
     }
 
+    /**
+     * Verify email and password for login
+     * @param string $email
+     * @param string $password
+     * @return array|null User data or null if invalid
+     */
+    public function VerifyPassword($email, $password)
+    {
+        $db = $this->GetDb();
+        $prefix = CMS_DB_PREFIX;
+        
+        $user = $db->GetRow(
+            "SELECT user_id, email, password_hash, name, avatar_url FROM {$prefix}module_oauth_users WHERE email = ?",
+            [$email]
+        );
+        
+        if (!$user || empty($user['password_hash'])) {
+            return null;
+        }
+        
+        if (!password_verify($password, $user['password_hash'])) {
+            return null;
+        }
+        
+        // Update last login
+        $db->Execute(
+            "UPDATE {$prefix}module_oauth_users SET last_login = ? WHERE user_id = ?",
+            [date('Y-m-d H:i:s'), $user['user_id']]
+        );
+        
+        return $user;
+    }
+
+    /**
+     * Set session value (wrapper for $_SESSION in module context)
+     */
+    public function SetSession($key, $value)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['oauth'][$key] = $value;
+    }
+
     public function CreateOrUpdateUser($provider, $providerUserId, $profileData)
     {
         $db = $this->GetDb();

@@ -103,3 +103,25 @@ $lang['help_action'] = 'Action to perform (login, logout, profile)';
 // Template types
 $lang['tpltype_login'] = 'OAuth Login Template';
 $lang['tpltype_profile'] = 'OAuth Profile Template';
+$lang['tpltype_register'] = 'Registration Template';
+$lang['tpltype_password_login'] = 'Password Login Template';
+
+// Registration
+$lang['register_title'] = 'Create Account';
+$lang['field_name'] = 'Name';
+$lang['field_email'] = 'Email';
+$lang['field_password'] = 'Password';
+$lang['field_password_confirm'] = 'Confirm Password';
+$lang['btn_register'] = 'Create Account';
+$lang['btn_login'] = 'Sign In';
+$lang['already_have_account'] = 'Already have an account?';
+$lang['no_account'] = "Don't have an account?";
+
+// Registration errors
+$lang['error_email_required'] = 'Email address is required.';
+$lang['error_email_invalid'] = 'Please enter a valid email address.';
+$lang['error_email_exists'] = 'An account with this email already exists.';
+$lang['error_password_required'] = 'Password is required.';
+$lang['error_password_too_short'] = 'Password must be at least 8 characters.';
+$lang['error_passwords_dont_match'] = 'Passwords do not match.';
+$lang['error_invalid_credentials'] = 'Invalid email or password.';
