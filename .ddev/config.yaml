@@ -1,0 +1,14 @@
+name: cmsms-oauth
+type: php
+docroot: ""
+php_version: "8.2"
+webserver_type: nginx-fpm
+database:
+  type: mariadb
+  version: "10.6"
+nodejs_version: "18"
+corepack_enable: true
+
+hooks:
+  post-start:
+    - exec: composer install --no-interaction --quiet || true

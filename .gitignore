@@ -1,4 +1,22 @@
-dist/
-.DS_Store
-.idea/
+# Dependencies
+/vendor/
+
+# PHPUnit
+/.phpunit.cache/
+/coverage/
+
+# Build artifacts
+/dist/
+
+# IDE
+/.idea/
+/.vscode/
 *.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Composer
+composer.lock

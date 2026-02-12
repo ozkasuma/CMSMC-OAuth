@@ -1,0 +1,34 @@
+{
+    "name": "cmsms-hub/oauth",
+    "description": "OAuth authentication module for CMS Made Simple",
+    "type": "cmsms-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "CMSMS Community",
+            "email": "oauth@cmsmadesimple.org"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "OAuth\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OAuth\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
+        "build": "./build.sh"
+    }
+}

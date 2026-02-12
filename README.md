@@ -43,6 +43,49 @@ Add GitHub, Google, Facebook, and Twitter login to your CMS Made Simple site wit
    ```
    Replace `PROVIDER` with: `github`, `google`, `facebook`, or `twitter`
 
+## Development
+
+### Prerequisites
+- [DDEV](https://ddev.com) (for PHP environment)
+
+### Setup
+```bash
+# Clone the repo
+git clone https://github.com/cmsms-hub/oauth.git
+cd oauth
+
+# Start DDEV and install dependencies
+make start
+make install
+```
+
+### Testing
+```bash
+# Run all tests
+make test
+
+# Run with coverage report
+make test-coverage
+```
+
+### Building Distribution Package
+```bash
+# Creates dist/OAuth-x.x.x.xml.gz
+make build
+```
+
+### Available Commands
+```bash
+make help     # Show all available commands
+make start    # Start DDEV environment  
+make stop     # Stop DDEV environment
+make install  # Install composer dependencies
+make test     # Run PHPUnit tests
+make build    # Build distribution package
+make clean    # Remove build artifacts
+make lint     # Check PHP syntax
+```
+
 ## Usage
 
 ### Smarty Tags
