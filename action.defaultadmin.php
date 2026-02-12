@@ -107,6 +107,7 @@ $smarty->assign('providerCounts', $providerCounts);
 $smarty->assign('providers', $this->GetProviders());
 
 // Form
+$smarty->assign('actionid', $id);
 $smarty->assign('formstart', $this->CreateFormStart($id, 'defaultadmin', $returnid, 'post', '', false, '', [], 'class="oauth-admin-form"'));
 $smarty->assign('formend', $this->CreateFormEnd());
 
