@@ -412,7 +412,7 @@ class OAuth extends CMSModule
         if ($template) {
             try {
                 $tpl = CmsLayoutTemplate::load($template);
-                return $tpl->fetch();
+                return $tpl->process();
             } catch (Exception $e) {
                 // Fall back
             }
@@ -422,7 +422,7 @@ class OAuth extends CMSModule
             $type_obj = CmsLayoutTemplateType::load($this->GetName() . '::' . $type);
             $tpl = CmsLayoutTemplate::load_dflt_by_type($type_obj);
             if ($tpl) {
-                return $tpl->fetch();
+                return $tpl->process();
             }
         } catch (Exception $e) {
             // Fall back
