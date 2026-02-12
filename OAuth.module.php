@@ -447,7 +447,10 @@ class OAuth extends CMSModule
         $mod = \cms_utils::get_module('OAuth');
         if (!$mod) return '';
         
-        $fn = dirname(__FILE__) . '/templates/' . $type . '.tpl';
+        // $type is a CmsLayoutTemplateType object, get the name
+        $typeName = is_object($type) ? $type->get_name() : $type;
+        
+        $fn = dirname(__FILE__) . '/templates/' . $typeName . '.tpl';
         if (file_exists($fn)) {
             return file_get_contents($fn);
         }
