@@ -7,11 +7,15 @@
  */
 if (!isset($gCms)) exit;
 
+// Provider comes from module params (m1_provider)
 $provider = $params['provider'] ?? null;
-$code = $params['code'] ?? null;
-$state = $params['state'] ?? null;
-$error = $params['error'] ?? null;
-$errorDescription = $params['error_description'] ?? '';
+
+// OAuth providers send code/state/error as raw query params (not prefixed)
+// So we need to check both $params and $_GET
+$code = $params['code'] ?? $_GET['code'] ?? null;
+$state = $params['state'] ?? $_GET['state'] ?? null;
+$error = $params['error'] ?? $_GET['error'] ?? null;
+$errorDescription = $params['error_description'] ?? $_GET['error_description'] ?? '';
 
 // Handle OAuth errors from provider
 if ($error) {
