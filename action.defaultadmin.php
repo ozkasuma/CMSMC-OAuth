@@ -43,7 +43,7 @@ if (isset($params['submit'])) {
         trim($params['provider_generic_userinfo_url'] ?? ''));
     
     $this->SetMessage($this->Lang('settings_saved'));
-    $this->RedirectToAdminTab('', '', $id);
+    $this->RedirectToAdminTab();
     return;
 }
 
