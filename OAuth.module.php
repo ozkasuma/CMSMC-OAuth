@@ -443,7 +443,16 @@ class OAuth extends CMSModule
     public function GetCallbackUrl($provider)
     {
         $config = cmsms()->GetConfig();
-        $baseUrl = rtrim($config['root_url'], '/');
+        $baseUrl = $config['root_url'];
+        
+        // Auto-detect if root_url is empty
+        if (empty($baseUrl)) {
+            $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+            $host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? 'localhost';
+            $baseUrl = $scheme . '://' . $host;
+        }
+        
+        $baseUrl = rtrim($baseUrl, '/');
         
         // Use a dedicated callback endpoint
         return $baseUrl . '/index.php?mact=OAuth,m1_,callback,0&m1_provider=' . urlencode($provider);
