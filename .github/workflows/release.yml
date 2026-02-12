@@ -1,0 +1,64 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, curl
+      
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+      
+      - name: Run tests
+        run: vendor/bin/phpunit --testsuite Unit
+      
+      - name: Build distribution package
+        run: ./build.sh
+      
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: OAuth v${{ steps.version.outputs.VERSION }}
+          body: |
+            ## Installation
+            
+            ### Via Module Manager (Recommended)
+            1. Download `OAuth-${{ steps.version.outputs.VERSION }}.xml.gz` below
+            2. Go to **Extensions → Module Manager** in CMSMS admin
+            3. Click **Upload Module**
+            4. Select the downloaded file and install
+            
+            ### Manual Installation
+            1. Extract the module files to `modules/OAuth/`
+            2. Go to **Extensions → Module Manager**
+            3. Find OAuth and click **Install**
+            
+            ## Requirements
+            - CMS Made Simple 2.2+
+            - PHP 8.0+
+            
+            ## Configuration
+            After installation, go to **Users & Groups → OAuth** to configure your OAuth providers.
+          files: dist/*.xml.gz
+          draft: false
+          prerelease: ${{ contains(github.ref, '-beta') || contains(github.ref, '-rc') }}
