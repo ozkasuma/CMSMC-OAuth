@@ -294,10 +294,10 @@
 
     {* Statistics *}
     <div class="oauth-stats">
-        <div class="oauth-stat-card">
+        <a href="{$mod->create_url($actionid, 'admin_users', '')}" class="oauth-stat-card" style="text-decoration: none; color: inherit;">
             <div class="oauth-stat-value">{$totalUsers}</div>
-            <div class="oauth-stat-label">{$mod->Lang('total_users')}</div>
-        </div>
+            <div class="oauth-stat-label">{$mod->Lang('total_users')} &rarr;</div>
+        </a>
         <div class="oauth-stat-card">
             <div class="oauth-stat-value">{$totalSessions}</div>
             <div class="oauth-stat-label">{$mod->Lang('active_sessions')}</div>
