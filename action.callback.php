@@ -93,7 +93,7 @@ try {
     $user = $this->GetCurrentUser();
     
     // Fire events
-    $this->SendEvent('OAuthUserLogin', [
+    $this->SendOAuthEvent('OAuthUserLogin', [
         'user' => $user,
         'provider' => $provider,
         'user_info' => $userInfo,
@@ -101,7 +101,7 @@ try {
     
     // Check if this is a new user (created in the last few seconds)
     if ($user && strtotime($user['created_at']) > time() - 5) {
-        $this->SendEvent('OAuthUserCreated', [
+        $this->SendOAuthEvent('OAuthUserCreated', [
             'user' => $user,
             'provider' => $provider,
         ]);

@@ -21,7 +21,7 @@ if ($user) {
     $this->ClearSession();
     
     // Fire logout event
-    $this->SendEvent('OAuthUserLogout', [
+    $this->SendOAuthEvent('OAuthUserLogout', [
         'user' => $user,
     ]);
     

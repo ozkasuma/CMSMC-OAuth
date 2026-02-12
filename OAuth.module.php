@@ -456,9 +456,9 @@ class OAuth extends CMSModule
 
     // Events
 
-    public function SendEvent($eventName, $params = [])
+    public function SendOAuthEvent($eventName, $params = [])
     {
-        Events::SendEvent($this->GetName(), $eventName, $params);
+        \Events::SendEvent($this->GetName(), $eventName, $params);
     }
 
     // Utility
